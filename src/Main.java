@@ -2,6 +2,7 @@ import entities.Customer;
 import entities.Order;
 import entities.Product;
 
+import javax.print.attribute.standard.Sides;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,12 +105,14 @@ public class Main {
         List<Order> filteredOrders = orders.stream()
                 .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isAfter(startDate) && order.getOrderDate().isBefore(endDate))
                 .toList();
-
+List<Product> nuovalistaprodotti = new ArrayList<>();
 
         System.out.println("Ordini effettuati da clienti di livello 2 tra il " + startDate + " e il " + endDate + ":");
         for (Order order : filteredOrders) {
-            System.out.println(order);
+
+            nuovalistaprodotti.addAll(order.getProducts());
         }
+        System.out.println(nuovalistaprodotti);
     }
     }
 
