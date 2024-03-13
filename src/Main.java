@@ -34,35 +34,50 @@ public class Main {
         productsList.add(cappello);
 
 
-        System.out.println("La lista ha " + productsList.size() + " elementi.");
+//        System.out.println("La lista ha " + productsList.size() + " elementi.");
+//
+//        for (Product product : productsList) {
+//            System.out.println(product);
+//        }
 
-        for (Product product : productsList) {
-            System.out.println(product);
-        }
         System.out.println("----------------- LIBRI CHE COSTANO PIU' DI 100");
 
 
-        productsList.stream()
-                .filter(product -> "Books".equals(product.getCategory()) && product.getPrice() > 100.0)
-                .forEach(product -> System.out.println(product));
+        List<Product> listalibri100 = productsList.stream()
+                .filter(product -> "Books".equals(product.getCategory())&& product.getPrice() > 100)
+                .toList();
+
+        for (Product product : listalibri100) {
+            System.out.println(product);
+        }
 
         System.out.println("----------------- PRODOTTI CATEGORIA BABY");
 
-        productsList.stream()
-                .filter(product ->"Baby".equals(product.getCategory()))
-                .forEach(product -> System.out.println(product));
+        List<Product> listababy = productsList.stream()
+                .filter(product -> "Baby".equals(product.getCategory()))
+                .toList();
+
+        for (Product product : listababy) {
+            System.out.println(product);
+        }
 
         System.out.println("----------------- PRODOTTI CATEGORIA BOYS SCONTATI AL 10%");
 
-        productsList.stream()
-                .filter(product ->"Baby".equals(product.getCategory()))
-            .map(product -> {
-                    double discountedPrice = product.getPrice() * 0.9; // Applicazione del 10% di sconto
+        List<Product> boysProducts = productsList.stream()
+                .filter(product -> "Boys".equals(product.getCategory()))
+                .map(product -> {
+                    double discountedPrice = product.getPrice() * 0.9;
                     return new Product(product.getId(), product.getName(), product.getCategory(), discountedPrice);
                 })
+                .toList();
 
-       .forEach(product -> System.out.println(product));
+        for (Product product : boysProducts) {
+            System.out.println(product);
         }
+        }
+
+
+//        ESERCIZIO 4
 
 
     }
