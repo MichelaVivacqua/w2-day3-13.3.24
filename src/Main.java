@@ -2,6 +2,7 @@ import entities.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,6 +41,7 @@ public class Main {
         }
         System.out.println("----------------- LIBRI CHE COSTANO PIU' DI 100");
 
+
         productsList.stream()
                 .filter(product -> "Books".equals(product.getCategory()) && product.getPrice() > 100.0)
                 .forEach(product -> System.out.println(product));
@@ -54,8 +56,14 @@ public class Main {
 
         productsList.stream()
                 .filter(product ->"Baby".equals(product.getCategory()))
-                .forEach(product -> System.out.println(product));
+            .map(product -> {
+                    double discountedPrice = product.getPrice() * 0.9; // Applicazione del 10% di sconto
+                    return new Product(product.getId(), product.getName(), product.getCategory(), discountedPrice);
+                })
+
+       .forEach(product -> System.out.println(product));
+        }
+
 
     }
 
-}
