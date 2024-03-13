@@ -5,7 +5,6 @@ import entities.Product;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -83,6 +82,7 @@ public class Main {
         LocalDate datee = LocalDate.parse("2021-03-02");
         LocalDate startDate = LocalDate.parse("2021-02-01");
         LocalDate endDate = LocalDate.parse("2021-04-01");
+        LocalDate datafuorirange = LocalDate.parse("2024-03-13");
 
         Customer cliente = new Customer(613555,"Michela",4);
         Customer mariobros = new Customer(16885,"MarioBros",2);
@@ -91,14 +91,16 @@ public class Main {
         Order ilMioOrdine = new Order(14746958,"spedito", LocalDate.now(),LocalDate.now(),boysProducts,cliente);
         Order ordineMario = new Order(54586,"evaso",date,date,listababy,mariobros);
         Order ordineLuigi = new Order(45620,"evaso",datee,datee,listalibri100,luigibros);
+        Order ordinePeach = new Order(452698,"evaso",datafuorirange,datafuorirange,listalibri100,luigibros);
 
 
         List<Order> orders = new ArrayList<>();
         orders.add(ilMioOrdine);
         orders.add(ordineMario);
         orders.add(ordineLuigi);
+        orders.add(ordinePeach);
 
-        
+
         List<Order> filteredOrders = orders.stream()
                 .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isAfter(startDate) && order.getOrderDate().isBefore(endDate))
                 .toList();
