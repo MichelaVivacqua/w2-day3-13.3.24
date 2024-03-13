@@ -92,7 +92,7 @@ public class Main {
         Order ilMioOrdine = new Order(14746958,"spedito", LocalDate.now(),LocalDate.now(),boysProducts,cliente);
         Order ordineMario = new Order(54586,"evaso",date,date,listababy,mariobros);
         Order ordineLuigi = new Order(45620,"evaso",datee,datee,listalibri100,luigibros);
-        Order ordinePeach = new Order(452698,"evaso",datafuorirange,datafuorirange,listalibri100,luigibros);
+        Order ordinePeach = new Order(452698,"evaso",datafuorirange,datafuorirange,boysProducts,luigibros);
 
 
         List<Order> orders = new ArrayList<>();
@@ -107,7 +107,7 @@ public class Main {
                 .toList();
 List<Product> nuovalistaprodotti = new ArrayList<>();
 
-        System.out.println("Ordini effettuati da clienti di livello 2 tra il " + startDate + " e il " + endDate + ":");
+        System.out.println("Lista di prodotti ordinati da clienti di livello 2 tra il " + startDate + " e il " + endDate + ":");
         for (Order order : filteredOrders) {
 
             nuovalistaprodotti.addAll(order.getProducts());
