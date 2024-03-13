@@ -1,5 +1,8 @@
+import entities.Customer;
+import entities.Order;
 import entities.Product;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,11 +77,41 @@ public class Main {
         for (Product product : boysProducts) {
             System.out.println(product);
         }
+
+        //        ESERCIZIO 4
+        LocalDate date = LocalDate.parse("2021-02-02");
+        LocalDate datee = LocalDate.parse("2021-03-02");
+        LocalDate startDate = LocalDate.parse("2021-02-01");
+        LocalDate endDate = LocalDate.parse("2021-04-01");
+
+        Customer cliente = new Customer(613555,"Michela",4);
+        Customer mariobros = new Customer(16885,"MarioBros",2);
+        Customer luigibros = new Customer(56526,"LuigiBros",2);
+
+        Order ilMioOrdine = new Order(14746958,"spedito", LocalDate.now(),LocalDate.now(),boysProducts,cliente);
+        Order ordineMario = new Order(54586,"evaso",date,date,listababy,mariobros);
+        Order ordineLuigi = new Order(45620,"evaso",datee,datee,listalibri100,luigibros);
+
+
+        List<Order> orders = new ArrayList<>();
+        orders.add(ilMioOrdine);
+        orders.add(ordineMario);
+        orders.add(ordineLuigi);
+
+        
+        List<Order> filteredOrders = orders.stream()
+                .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isAfter(startDate) && order.getOrderDate().isBefore(endDate))
+                .toList();
+
+
+        System.out.println("Ordini effettuati da clienti di livello 2 tra il " + startDate + " e il " + endDate + ":");
+        for (Order order : filteredOrders) {
+            System.out.println(order);
         }
-
-
-//        ESERCIZIO 4
-
-
     }
+    }
+
+
+
+
 

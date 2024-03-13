@@ -6,6 +6,7 @@ import java.util.List;
 public class Order {
     private long id;
 
+
     public long getId() {
         return id;
     }
@@ -19,7 +20,7 @@ public class Order {
     private LocalDate deliveryDate;
     private List<Product> products;
     private Customer customer;
-    public Order(long id) {
+    public Order(long id,String status,LocalDate orderDate,LocalDate deliveryDate,List<Product> products,Customer customer) {
         this.id=id;
         this.status=status;
         this.orderDate=orderDate;
@@ -66,5 +67,17 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                ", products=" + products +
+                ", customer=" + customer +
+                '}';
     }
 }
